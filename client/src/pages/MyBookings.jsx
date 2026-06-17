@@ -27,7 +27,7 @@ const MyBookings = () =>{
     const handlePayment = async (bookingId)=>{
         try {
             const {data} = await axios.post('/api/bookings/stripe-payment', 
-                {bookingId},{headers: {Authorization: `Bearer ${await  getToken()}`}})
+                {bookingId},{headers: {Authorization: `Bearer ${await getToken()}`}})
                 if(data.success){
                     window.location.href = data.url
                 }else{

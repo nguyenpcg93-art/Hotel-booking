@@ -4,7 +4,6 @@ import { assets, facilityIcons, roomCommonData } from "../assets/assets";
 import StarRating from "../components/StarRating";
 import { useAppContext } from "../context/AppContext";
 import toast from "react-hot-toast";
-import axios from "axios";
 
 const RoomDetails = () => {
 
@@ -71,7 +70,7 @@ const RoomDetails = () => {
         room && setRoom(room)
         room && setMainImage(room.images[0])
     },[rooms])
-
+    console.log(room)
 
     return room && (
         <div className='py-28 md:py-35 px-4 md:px-16 lg:px-24 xl:px-32'>

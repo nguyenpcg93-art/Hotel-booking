@@ -6,7 +6,8 @@ import { useAppContext } from "../context/AppContext";
 
 const FeaturedDestination = () => {
 
-    const {rooms, navigate} = useAppContext();
+    const {rooms} = useAppContext();
+    const navigate = useNavigate();
     console.log("ROOMS:", rooms);
 
   return rooms.length > 0 && (

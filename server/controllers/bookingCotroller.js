@@ -119,11 +119,15 @@ export const getUserBookings = async (req, res)=>{
 
 export const getHotelBookings = async(req, res)=>{
     try {
-        const hotel = await Hotel.findOne({owner: req.auth.userId});
+        const hotel = await Hotel.findOne({owner: req.user._id});
         if(!hotel){
         return res.json({success: false, message: "No Hotel Found"});
         }
-        const bookings = (await Booking.find({hotel: hotel._id}).populate("room hotel user")).toSorted({createdAt: -1});
+        const bookings = await Booking.find({
+    hotel: hotel._id
+})
+.populate("room hotel user")
+.sort({ createdAt: -1 });
         //Total Bookings
         const totalBookings = bookings.length;
         //Total Revenue
@@ -150,7 +154,7 @@ export const stripePayment = async (req,res)=>{
         const line_items = [
             {
                 price_data:{
-                    currency:"usd",
+                    currency:"vnd",
                     product_data:{
                         name:roomData.hotel.name,
                     },
@@ -163,7 +167,7 @@ export const stripePayment = async (req,res)=>{
         const session = await stripeInstance.checkout.sessions.create({
             line_items,
             mode:"payment",
-            success_url:`${origin}/my-bookings`,
+            success_url:`${origin}/loader/my-bookings`,
             cancel_url:`${origin}/my-bookings`,
             metadata:{
                 bookingId,

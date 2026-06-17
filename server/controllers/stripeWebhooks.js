@@ -22,11 +22,11 @@ export const stripeWebhooks = async (request,response)=>{
 
     const session = event.data.object;
 
-    console.log("CHECKOUT SESSION:", session);
+    
 
     const bookingId = session.metadata.bookingId;
 
-    console.log("BOOKING ID:", bookingId);
+    
 
     await Booking.findByIdAndUpdate(
         bookingId,
@@ -36,7 +36,7 @@ export const stripeWebhooks = async (request,response)=>{
         }
     );
 
-    console.log("BOOKING UPDATED");
+    
 }
 else{
     console.log("Unhandled event type:", event.type);

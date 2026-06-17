@@ -66,7 +66,7 @@ const AllRooms = () => {
     }
 
     const handleSortChange = (sortOption)=>{
-        setSelectedSort(sortOption)
+        setSelectedSort(sortOption);
     }
 
     //Function to check if a room matches the selected room types
