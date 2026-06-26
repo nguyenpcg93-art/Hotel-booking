@@ -18,16 +18,16 @@ export const storeRecentSearchedCities = async (req, res )=>{
         const {recentSearchedCities} = req.body
         const user = await req.user;
 
-        if(use.recentSearchedCities.length < 3){
-            user.recentSearchedCities.push(recentSearchedCity);
+        if(user.recentSearchedCities.length < 3){
+            user.recentSearchedCities.push(recentSearchedCities);
         }else{
             user.recentSearchedCities.shift();
-            user.recentSearchedCities.push(recentSearchedCity);
+            user.recentSearchedCities.push(recentSearchedCities);
         }
         await user.save();
         res.json({success: true, message: "City added"})
 
     } catch(error){
-        res.json({success: true, message: "City added"})
+        res.json({success: false, message: "City added"})
     }
 }

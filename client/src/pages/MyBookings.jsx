@@ -63,12 +63,12 @@ const MyBookings = () =>{
                 <div className='flex flex-col md:flex-row'>
                     <img src={booking.room.images[0]} alt="hotel-img" className='min-md:w-44 rounded shadow object-cover' />
                     <div className='flex flex-col gap-1.5 max-md:mt-3 min-md:ml-4'>
-                        <p className='font-playfair text-2xl'>{booking.hotel.name}
+                        <p className='font-playfair text-2xl'>{booking.hotel?.name}
                             <span className='font-inter text-sm'> ({booking.room.roomType})</span>
                         </p>
                         <div className='flex items-center gap-1 text-sm text-gray-500'>
                             <img src={assets.locationIcon} alt="location-icon"  />    
-                            <span>{booking.hotel.address}</span>               
+                            <span>{booking.hotel?.address}</span>               
                         </div>
                         <div className='flex items-center gap-1 text-sm text-gray-500'>
                             <img src={assets.guestsIcon} alt="guests-icon"  />    

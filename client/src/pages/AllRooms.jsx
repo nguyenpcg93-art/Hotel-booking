@@ -131,15 +131,15 @@ const AllRooms = () => {
             <div key={room._id} className='flex flex-col md:flex-row items-start py-10 gap-6 border-b border-gray-300 last:pb:30 last:border-0'>
                 <img onClick={()=> {navigate(`/rooms/${room._id}`); scrollTo(0, 0)}} src={room.images[0]} alt="hotel-img" title="View Room Detail" className='max-h-65 md:w-1/2 rounded-xl shadow-lg object-cover cursor-pointer' />            
                 <div className='md:w-1/2 flex flex-col gap-2'>
-                    <p className='text-gray-500'>{room.hotel.city}</p>
-                    <p onClick={()=> {navigate(`/rooms/${room._id}`); scrollTo(0, 0)}} className='text-gray-800 text-3xl font-playfair cursor-pointer'>{room.hotel.name}</p>
+                    <p className='text-gray-500'>{room.hotel?.city}</p>
+                    <p onClick={()=> {navigate(`/rooms/${room._id}`); scrollTo(0, 0)}} className='text-gray-800 text-3xl font-playfair cursor-pointer'>{room.hotel?.name}</p>
                     <div className='flex items-center'>
                         <StarRating />
                         <p className='ml-2'>200+ reviews</p>
                     </div>
                     <div className='flex items-center gap-1 text-gray-500 mt-2 text-sm'>
                         <img src={assets.locationIcon} alt="location-icon" />
-                        <span>{room.hotel.address}</span>
+                        <span>{room.hotel?.address}</span>
                     </div>
                     {/* Room Amenities */}
                     <div className='flex flex-wrap items-center mt-3 mb-6 gap-4'>

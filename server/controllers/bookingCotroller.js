@@ -146,10 +146,15 @@ export const stripePayment = async (req,res)=>{
         const {bookingId} =req.body;
 
         const booking = await Booking.findById(bookingId);
+        console.log("BOOKING:", booking);
         const roomData = await Room.findById(booking.room).populate('hotel');
+        console.log("ROOM:", roomData);
+        console.log("HOTEL:", roomData.hotel);
         const totalPrice=booking.totalPrice;
+        console.log("TOTAL:", totalPrice);
 
         const {origin} = req.headers;
+        console.log("ORIGIN:", origin);
         const stripeInstance = new stripe(process.env.STRIPE_SECRET_KEY);
         const line_items = [
             {
@@ -177,6 +182,10 @@ export const stripePayment = async (req,res)=>{
 
 
     }catch(error){
+        console.log("=========== STRIPE ERROR ===========");
+        console.log(error);
+        console.log(error.message);
+        console.log("====================================");
         res.json({success:false,message: "payment Failed"})
 
     }
